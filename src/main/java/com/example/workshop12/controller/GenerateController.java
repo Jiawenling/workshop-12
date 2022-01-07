@@ -1,4 +1,4 @@
-package main.java.com.example.workshop12.controller;
+package com.example.workshop12.controller;
 
 import main.java.com.example.workshop12.model.Generate;
 import org.slf4j.Logger;
@@ -27,12 +27,12 @@ public class GenerateController {
 
     @PostMapping("/generate")
     public String generateNumbers(@ModelAttribute Generate generate, Model model){
+        try{
+
         logger.info("From the form"+ generate.getNumberVal());
         int numberRandomNumbers = generate.getNumberVal();
         if (numberRandomNumbers > 10){
-            //throw new RandomNumberException();
-            model.addAttribute("errorMessage", "OMG exceed 10 already !");
-            return "error";
+            throw new main.java.com.example.workshop12.error.RandomNumberException();
         }
         List<Integer> listToShuffle = new ArrayList<>();
         for (int i = 0; i <= 10; i++){
@@ -45,7 +45,12 @@ public class GenerateController {
             String imgPic = "number" + imgNum + ".jpg";
             selectedImg.add(imgPic);
         }
-        model.addAttribute("randNumsResult", selectedImg);
+        model.addAttribute("randNumsResult", selectedImg.toArray());}
+
+        catch(main.java.com.example.workshop12.error.RandomNumberException e){
+            model.addAttribute("errorMessage", "OMG exceed 10 already !");
+            return "error";
+        }
         return "result";
     }
 }

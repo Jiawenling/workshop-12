@@ -7,7 +7,7 @@
 <body>
     <ul th:each="numVal: ${randNumsResult}">
         <li th:text = "${numVal}"></li>
-        <img th:src="@{${'/image/' + numVal}}" width = 200 height = 200>
+        <img th:src="@{${'/images/' + numVal}}" width = 200 height = 200>
     </ul>
 </body>
 </html>

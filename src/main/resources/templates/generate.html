@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1>How many numbers do you wish to generate</h1>
-  <form action="#" th:action="@{/generate}" th:object="${generate}" method="POST">
+  <form action="#" th:action="@{/generate}" th:object="${generate}" method="post">
   <p>
       <input type="text" th:field="*{numberVal}">
       <input type ="submit" value = "Generate">
